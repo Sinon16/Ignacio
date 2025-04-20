@@ -3,12 +3,14 @@
 num=int(input("ingrese un numero"))
 par=0
 impar=0
-for i in range(num):
-    if num%2==0:
-        print("El numero es par")
-        Par+=+1
+
+for i in range(num+1):
+    
+    if i%2==0:
+        print("El numero", i," par")
+        par=par+1
     else:
-        print("El numero es impar")
+        print("El numero", i,  "impar")
         impar+=+1
 
 print("la cantidad de numeros par en la secuencia es:", par)    
