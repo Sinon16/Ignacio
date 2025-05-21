@@ -120,34 +120,63 @@
 #cantidad de autos que han ingresado y el monto total
 #recaudado, tambien debe mostrar el monto mas alto pagado
 
+boleta=0
+Full=0
+Standard=0
+basica=0
 while True:
-    op=int(input('''selecione una opcion
-                  1- cursar pago de lavado
-                  2- ver ventas diarias
-                  3- salir
-                  '''))
+    while True:
+        try:
+            op=int(input('''selecione una opcion
+                        1- cursar pago de lavado
+                        2- ver ventas diarias
+                        3- salir
+                        '''))
+            break
+        except Exception:
+            print("Debe ser un numero entero")
+        
     match op:
         case 1:
-            lavado=int(input('''seleccione un modo de lavado
-                              1- Full $15.000
-                              2- Standard $10.000
-                              3- Basico $7.000
-                              '''))
-            match lavado:
-                case 1:
-                    boleta+=15000
-                    Full+=1
-                case 2:
-                    boleta+=10000
-                    Standard+=1
-                case 3:
-                    boleta+=7000
-                    basica+=1
-                case _:
-                    print("opcion no validad. Error")
-            total=Full+Standard+basica 
+            while True:
+                while True:
+                    try:
+                        lavado=int(input('''seleccione un modo de lavado
+                                    1- Full $15.000
+                                    2- Standard $10.000
+                                    3- Basico $7.000
+                                    4- Volver al menu anterior
+                                    '''))
+                        break
+                    except Exception:
+                        print("Debe ser un numero entero")
+                match lavado:
+                    case 1:
+                        boleta+=15000
+                        Full+=1
+                    case 2:
+                        boleta+=10000
+                        Standard+=1
+                    case 3:
+                        boleta+=7000
+                        basica+=1
+                    case 4:
+                        break
+                    case _:
+                        print("opcion no validad. Error")
+                total=Full+Standard+basica 
         case 2:
-            print(f'''///Boleta///
-                  la cantidad de ingresos del dia es : {boleta}
-                    ''')
-
+            print("///Boleta///")
+            print(f"La cantidad de ingresos del dia es : {boleta}")
+            print(f"Lleva una cantidad de producto : {total}")
+            if basica>0 and Standard==0 and Full==0:
+                print("El producto de mayor valor es el basico por  $ 7000")
+            elif Standard>0 and Full==0:
+                print("El producto de mayor valor es el standard por  $ 10000")
+            else:
+                print("El producto de mayor valor es el full por  $ 15000")
+        case 3:
+            print("Que tenga un buen dia. Adios")
+            break
+        case _:
+            print("opcion no validad. Error intente nuevamente")
