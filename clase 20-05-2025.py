@@ -124,10 +124,12 @@ boleta=0
 Full=0
 Standard=0
 basica=0
+print("Lavado de Auto")
 while True:
     while True:
         try:
-            op=int(input('''selecione una opcion
+            op=int(input('''
+                         selecione una opcion
                         1- cursar pago de lavado
                         2- ver ventas diarias
                         3- salir
@@ -141,7 +143,8 @@ while True:
             while True:
                 while True:
                     try:
-                        lavado=int(input('''seleccione un modo de lavado
+                        lavado=int(input('''
+                                    seleccione un modo de lavado
                                     1- Full $15.000
                                     2- Standard $10.000
                                     3- Basico $7.000
@@ -168,7 +171,7 @@ while True:
         case 2:
             print("///Boleta///")
             print(f"La cantidad de ingresos del dia es : {boleta}")
-            print(f"Lleva una cantidad de producto : {total}")
+            print(f"La cantidad de autos lavados actualmente es : {total}")
             if basica>0 and Standard==0 and Full==0:
                 print("El producto de mayor valor es el basico por  $ 7000")
             elif Standard>0 and Full==0:
