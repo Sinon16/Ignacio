@@ -58,6 +58,9 @@
 # while True:
 #     try:
 #         cant_rojos=int(input("ingrese la cantidad de alumnos con rojos en el curso"))
+#         while cant_rojos<1:
+#             print("solo numeros enteros positivos")
+#             cant_rojos=int(input("ingrese la cantidad de alumnos con rojos en el curso"))
 #         break
 #     except Exception:
 #         print("solo debe ingresar numeros enteros")
@@ -72,6 +75,9 @@
 #     while True:
 #         try:
 #             asistencia=int(input("¿ A cuantos talleres asistio ? (0 a 4)"))
+#             while asistencia <1:
+#                 print("solo numeros enteros positivos")
+#                 asistencia=int(input("¿ A cuantos talleres asistio ? (0 a 4)"))
 #             break
 #         except Exception:
 #             print("solo debe ingresar numeros enteros")
@@ -83,6 +89,9 @@
 #     while True:
 #         try:
 #             nota_sindecimas=float(input("¿cual es su nota final sin decimas?"))
+#             while nota_sindecimas<1:
+#                 print("solo numeros positivos")
+#                 nota_sindecimas=float(input("¿cual es su nota final sin decimas?"))
 #             break
 #         except Exception:
 #             print("solo debe ingresar numeros")
@@ -124,6 +133,7 @@ boleta=0
 Full=0
 Standard=0
 basica=0
+flujo_caja = 70000 
 print("Lavado de Auto")
 while True:
     while True:
@@ -157,21 +167,64 @@ while True:
                     case 1:
                         boleta+=15000
                         Full+=1
+                        precio=15000
                     case 2:
                         boleta+=10000
                         Standard+=1
+                        precio=10000
                     case 3:
                         boleta+=7000
                         basica+=1
+                        precio=7000
                     case 4:
                         break
                     case _:
                         print("opcion no validad. Error")
-                total=Full+Standard+basica 
+                total=Full+Standard+basica
+                while True:
+                    while True:
+                        try:
+                            modo_pago=int(input('''
+                                            seleccione metodo de pago
+                                            1- pago debito
+                                            2- pago efectivo
+                                                '''))
+                            while modo_pago<1:
+                                print("debe ser un numero entero positivo")
+                                modo_pago=int(input('''
+                                            seleccione metodo de pago
+                                            1- pago debito
+                                            2- pago efectivo
+                                                    '''))
+                            break
+                        except Exception:
+                            print("debe ser numero entero")
+
+                    if modo_pago==1:
+                        print(f"se cobro {precio} a su tarjeta de debito")
+                        break
+                    elif modo_pago==2:
+                        try:
+                            efectivo = int(input(f"El precio del lavado es ${precio}. ¿Cuánto paga en efectivo? ($)"))
+                            if efectivo >= precio:
+                                cambio = efectivo - precio
+                                if cambio > flujo_caja:
+                                    print(f"No se puede dar el cambio de ${cambio} porque el flujo de caja es limitado a ${flujo_caja}.")
+                                else:
+                                    flujo_caja -= cambio 
+                                    print(f"El cambio es: ${cambio}. El pago ha sido exitoso.")
+                                    break
+                            else:
+                                print(f"El monto ingresado ${efectivo} es menor que el precio del lavado.")
+                        except Exception:
+                            print("Debe ser un número entero.")
+                    else:
+                        print("opcion no validad. Favor elegir 1 o 2")
         case 2:
             print("///Boleta///")
             print(f"La cantidad de ingresos del dia es : {boleta}")
             print(f"La cantidad de autos lavados actualmente es : {total}")
+            print(f"Quedo en caja : {flujo_caja}")
             if basica>0 and Standard==0 and Full==0:
                 print("El producto de mayor valor es el basico por  $ 7000")
             elif Standard>0 and Full==0:
