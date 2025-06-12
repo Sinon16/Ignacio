@@ -120,7 +120,7 @@ while True:
             for i in range(len(notas)):
                 print(f"nota {i+1} : {notas[i]}")
             try:
-                nota = float(input("Ingresa la nota a borrar: "))
+                nota =int(input("Ingresa la nota a borrar: "))
                 if nota in notas:
                     notas.remove(nota)
                     print("Nota borrada.")
@@ -131,15 +131,17 @@ while True:
                 print("Solo ingresar numeros enteros")
         case 3:
             print("//////Libro de notas//////")
+            print("-----------------------------------")
             for i in range(len(notas)):
                 print(f"nota {i+1} : {notas[i]}")
+            print("-----------------------------------")
         case 4:
             notas.sort()
             promedio=suma/len(notas)
             print(f"El promedio de las notas ingresadas es : {promedio}")
             print(f"La nota maxima ingresada es : {notas[-1]}")
             print(f"La nota minima ingresada es : {notas[0]}")
-
+            
         case 5:
             notas.clear()
             print("Todas las notas han sido eliminadas.")
