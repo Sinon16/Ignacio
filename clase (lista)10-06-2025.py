@@ -62,7 +62,7 @@
 #             for i in range(len(productos)):
 #                 print(f"{i+1}- {productos[i]} $ {precios[i]}")
 #             comprar=int(input("selecciona un producto a comprar"))
-#             carrito.append((productos[comprar-1],precios[comprar-1]))
+#             carrito.append(comprar-1)
 
 #             print(f"Agregando al carrito {productos[comprar-1]} $ {precios[comprar-1]}")
 #         case 3:
@@ -87,3 +87,65 @@ crear un programa de manejo de notas
 5- limpiar todas las notas
 6-salir
 '''
+notas=[]
+suma=0
+while True:
+    while True:
+        try:
+            op=int(input('''
+                    1- ingresar nota
+                    2- borrar nota
+                    3- mostrar notas
+                    4- sacar promedio , nota mayor y nota menor
+                    5- limpiar todas las notas
+                    6-salir
+                    '''))
+            break
+        except Exception:
+            print("Solo debe ingresar numeros enteros entre 1 a 6")
+
+    match op:
+        case 1:
+            try:
+                nota =int(input("Ingresa la nota (10-70): "))
+                if 10 <= nota <= 70:
+                    notas.append(nota)
+                    print("Nota agregada.")
+                    suma+=nota
+                else:
+                    print("La nota debe estar entre 10 a 70.")
+            except Exception:
+                print("Solo ingresar numeros enteros")
+        case 2:
+            for i in range(len(notas)):
+                print(f"nota {i+1} : {notas[i]}")
+            try:
+                nota = float(input("Ingresa la nota a borrar: "))
+                if nota in notas:
+                    notas.remove(nota)
+                    print("Nota borrada.")
+                    suma-=nota
+                else:
+                    print("Esa nota no está en la lista.")
+            except Exception:
+                print("Por favor, ingresa un número válido.")
+        case 3:
+            print("//////Libro de notas//////")
+            for i in range(len(notas)):
+                print(f"nota {i+1} : {notas[i]}")
+        case 4:
+            notas.sort()
+            promedio=suma/len(notas)
+            print(f"El promedio de las notas ingresadas es : {round(promedio),1}")
+            print(f"La nota maxima ingresada es : {notas[-1]}")
+            print(f"La nota minima ingresada es : {notas[0]}")
+
+        case 5:
+            notas.clear()
+            print("Todas las notas han sido eliminadas.")
+            suma=0
+        case 6:
+            print("Saliendo del programa.")
+            break
+        case _:
+            print("Opción no válida. Por favor elige entre 1 y 6.")
