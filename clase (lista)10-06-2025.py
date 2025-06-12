@@ -128,7 +128,7 @@ while True:
                 else:
                     print("Esa nota no está en la lista.")
             except Exception:
-                print("Por favor, ingresa un número válido.")
+                print("Solo ingresar numeros enteros")
         case 3:
             print("//////Libro de notas//////")
             for i in range(len(notas)):
@@ -136,7 +136,7 @@ while True:
         case 4:
             notas.sort()
             promedio=suma/len(notas)
-            print(f"El promedio de las notas ingresadas es : {round(promedio),1}")
+            print(f"El promedio de las notas ingresadas es : {promedio}")
             print(f"La nota maxima ingresada es : {notas[-1]}")
             print(f"La nota minima ingresada es : {notas[0]}")
 
