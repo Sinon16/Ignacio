@@ -16,7 +16,7 @@ frutas={
 
 }
 print(frutas)
-frutas["Granada"]=1500
+frutas["Naranja"]=1500
 print(frutas)
 
 for key, Value in frutas.items():
