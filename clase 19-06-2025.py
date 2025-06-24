@@ -166,7 +166,6 @@ def validar_año(validar):
         if i.isdigit():
             nume+=1
     if nume==4 and len(validar)==4:
-        año=int(año)
         return True
     else:
         return False
@@ -188,39 +187,63 @@ while True:
                 print("Agregando Vehiculo")
                 marca=input("Ingrese la marca: ")
                 año=(input("Ingrese el año : "))
-                validar_año(año)
-                if validar_año(año):
-                     print("Año ingresado correctamente")
-                else:
-                    print("Error al ingresar año")
-                    print("Solo pueden ser 4 digitos y solo numeros enteros")
+                
+                while True:
+                    validar_año(año)
+                    if validar_año(año):
+                        print("Año ingresado correctamente")
+                        break
+                    else:
+                        print("Error al ingresar año")
+                        print("Solo pueden ser 4 digitos y solo numeros enteros")
+                        año=(input("Ingrese el año : "))
 
                 patente=input("ingrese la patente : ")
-                validar_patente(patente)
-                if validar_patente(patente):
-                    print("La patente se pudo agregar correctamente")
-                else:
-                    print("Error al ingresar patente")
-                    print("La patente debe tener un largo de 6 con 4 minusculas y 2 digitos")
+                
+                while True:
+                    validar_patente(patente)
+                    if validar_patente(patente):
+                        print("La patente se pudo agregar correctamente")
+                        break
+                    else:
+                        print("Error al ingresar patente")
+                        print("La patente debe tener un largo de 6 con 4 minusculas y 2 digitos")
+                        patente=input("ingrese la patente : ")
                 tipo=int(input("ingrese tipo (1-Sedan 2- Camioneta 3- Moto)"))
-                num=list(Vehiculos.keys())[-1]
-                if tipo==1:
-                    Vehiculos[num+1]={"marca" : marca , "año": año , "patente": patente , "tipo": "sedan"}
-                    print("Se ha agregado")
-                elif tipo==2:
-                    Vehiculos[num+1]={"marca" : marca , "año": año , "patente": patente , "tipo": "camioneta"}
-                    print("Se ha agregado")
-                elif tipo==3:
-                    Vehiculos[num+1]={"marca" : marca , "año": año , "patente": patente , "tipo": "moto"}
-                    print("Se ha agregado")
+                if len(Vehiculos)==0:
+                    if tipo==1:
+                        Vehiculos[1]={"marca" : marca , "año": año , "patente": patente , "tipo": "sedan"}
+                        print("Se ha agregado")
+                    elif tipo==2:
+                        Vehiculos[1]={"marca" : marca , "año": año , "patente": patente , "tipo": "camioneta"}
+                        print("Se ha agregado")
+                    elif tipo==3:
+                        Vehiculos[1]={"marca" : marca , "año": año , "patente": patente , "tipo": "moto"}
+                        print("Se ha agregado")
+                    else:
+                        print("Error, opcion invalida")
+                    
                 else:
-                    print("Error, opcion invalida")
+                    num=list(Vehiculos.keys())[-1]
+                    if tipo==1:
+                        Vehiculos[num+1]={"marca" : marca , "año": año , "patente": patente , "tipo": "sedan"}
+                        print("Se ha agregado")
+                    elif tipo==2:
+                        Vehiculos[num+1]={"marca" : marca , "año": año , "patente": patente , "tipo": "camioneta"}
+                        print("Se ha agregado")
+                    elif tipo==3:
+                        Vehiculos[num+1]={"marca" : marca , "año": año , "patente": patente , "tipo": "moto"}
+                        print("Se ha agregado")
+                    else:
+                        print("Error, opcion invalida")
+
             case 2:
                 for i , vehiculo in Vehiculos.items():
-                    print(f"{i+1} - {vehiculo["marca"]} {vehiculo["año"]} {vehiculo["patente"]} {vehiculo["tipo"]} ")
+                    print(f"{i} - {vehiculo["marca"]} {vehiculo["año"]} {vehiculo["patente"]} {vehiculo["tipo"]} ")
+                
             case 3:
                 for i , vehiculo in Vehiculos.items():
-                    print(f"{i+1} - {vehiculo["marca"]} {vehiculo["año"]} {vehiculo["patente"]} {vehiculo["tipo"]} ")
+                    print(f"{i} - {vehiculo["marca"]} {vehiculo["año"]} {vehiculo["patente"]} {vehiculo["tipo"]} ")
                     actualizar=int(input("Ingrese vehiculo que va actualizar : "))
                     while True:
                         print('''
@@ -236,11 +259,29 @@ while True:
                                 Vehiculos[actualizar]["marca"]=marca
                                 print("Se ha modificado el dato")
                             case 2:
-                                año=int(input("Ingrese el año : "))
+                                año=(input("Ingrese el año : "))
+                                while True:
+                                    validar_año(año)
+                                    if validar_año(año):
+                                        print("Año ingresado correctamente")
+                                        break
+                                    else:
+                                        print("Error al ingresar año")
+                                        print("Solo pueden ser 4 digitos y solo numeros enteros")
+                                        año=(input("Ingrese el año : "))
                                 Vehiculos[actualizar]["año"] =año
                                 print("Se ha modificado el dato")
                             case 3:
                                 patente=input("ingrese la patente : ")
+                                while True:
+                                    validar_patente(patente)
+                                    if validar_patente(patente):
+                                        print("La patente se pudo agregar correctamente")
+                                        break
+                                    else:
+                                        print("Error al ingresar patente")
+                                        print("La patente debe tener un largo de 6 con 4 minusculas y 2 digitos")
+                                        patente=input("ingrese la patente : ")
                                 Vehiculos[actualizar]["patente"]=patente
                                 print("Se ha modificado el dato")
                             case 4:
@@ -263,7 +304,7 @@ while True:
                                 print("Recuerda seleccionar opcion de 1 a 5")
             case 4:
                 for i , vehiculo in Vehiculos.items():
-                    print(f"{i+1} - {vehiculo["marca"]} {vehiculo["año"]} {vehiculo["patente"]} {vehiculo["tipo"]} ")
+                    print(f"{i} - {vehiculo["marca"]} {vehiculo["año"]} {vehiculo["patente"]} {vehiculo["tipo"]} ")
                 borrar=int(input("ingresa vehiculo a borrar : "))
                 if borrar in Vehiculos:
                     del Vehiculos[borrar]
@@ -273,12 +314,12 @@ while True:
             case 5:
                 cant=list(Vehiculos.keys())
                 ultimo=list(Vehiculos.keys())[-1]
-                print(f"La cantidad de vehiculos en el garage es : {cant}")
+                print(f"La cantidad de vehiculos en el garage es : {len(cant)}")
                 print(f'''El ultimo vehiculo agregado es : 
-                       {Vehiculos[ultimo]["Marca"]}
-                       {Vehiculos[ultimo]["año"]}
-                       {Vehiculos[ultimo]["patente"]}
-                       {Vehiculos[ultimo]["tipo"]}''')
+                      Marca: {Vehiculos[ultimo]["marca"]}
+                      Año :  {Vehiculos[ultimo]["año"]}
+                      Patente : {Vehiculos[ultimo]["patente"]}
+                      Tipo de Vehiculo : {Vehiculos[ultimo]["tipo"]}''')
             case 6:
                 print("Saliendo....")
                 break

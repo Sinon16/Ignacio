@@ -75,35 +75,110 @@ tieneNumero=False
 #     if caracter in specials:
 #         print("Si es un cracter especial")
   
-clave="Tredf99"      
-def valida_pass(clave):
-    Mayuscula=False
-    Minuscula=False
-    Numero=False
-    for palabra in clave:
-        if palabra.isupper():
-            Mayuscula=True
-        if palabra.islower():
-            Minuscula=True
-        if palabra.isdigit():
-            Numero=True
-    if Mayuscula and Minuscula and Numero and len(clave)==6:
-        print("la clave está bien escrita")
+# clave="Tredf99"      
+# def valida_pass(clave):
+#     Mayuscula=False
+#     Minuscula=False
+#     Numero=False
+#     for palabra in clave:
+#         if palabra.isupper():
+#             Mayuscula=True
+#         if palabra.islower():
+#             Minuscula=True
+#         if palabra.isdigit():
+#             Numero=True
+#     if Mayuscula and Minuscula and Numero and len(clave)==6:
+#         print("la clave está bien escrita")
+#         return True
+#     else:
+#         print("la clave está mal escrita")
+#         return False
+# valida_pass(clave)
+
+
+# clave=[]
+
+# n=int(input("Ingrese una clave"))
+# user=int(input("Ingrese una clave"))
+# tipo=int(input("Ingrese una clave"))
+
+
+# clave.append({"clave": n, "usuario": user, "tipo": tipo})
+Vehiculos={}
+def validar_patente(clave):
+    minu=0
+    nume=0
+    for i in clave:
+        if i.islower():
+            minu+=1
+        if i.isdigit():
+            nume+=1
+    if minu==4 and nume==2 and len(clave)==6:
         return True
     else:
-        print("la clave está mal escrita")
         return False
-valida_pass(clave)
 
+def validar_año(validar):
+    nume=0
+    for i in validar:
+        if i.isdigit():
+            nume+=1
+    if nume==4 and len(validar)==4:
+        return True
+    else:
+        return False
+print("Agregando Vehiculo")
+marca=input("Ingrese la marca: ")
+año=(input("Ingrese el año : "))
 
-clave=[]
+while True:
+    validar_año(año)
+    if validar_año(año):
+        print("Año ingresado correctamente")
+        break
+    else:
+        print("Error al ingresar año")
+        print("Solo pueden ser 4 digitos y solo numeros enteros")
+        año=(input("Ingrese el año : "))
 
-n=int(input("Ingrese una clave"))
-user=int(input("Ingrese una clave"))
-tipo=int(input("Ingrese una clave"))
+patente=input("ingrese la patente : ")
 
+while True:
+    validar_patente(patente)
+    if validar_patente(patente):
+        print("La patente se pudo agregar correctamente")
+        break
+    else:
+        print("Error al ingresar patente")
+        print("La patente debe tener un largo de 6 con 4 minusculas y 2 digitos")
+        patente=input("ingrese la patente : ")
+tipo=int(input("ingrese tipo (1-Sedan 2- Camioneta 3- Moto)"))
+if not Vehiculos:
+    if tipo==1:
+        Vehiculos[1]={"marca" : marca , "año": año , "patente": patente , "tipo": "sedan"}
+        print("Se ha agregado")
+    elif tipo==2:
+        Vehiculos[1]={"marca" : marca , "año": año , "patente": patente , "tipo": "camioneta"}
+        print("Se ha agregado")
+    elif tipo==3:
+        Vehiculos[1]={"marca" : marca , "año": año , "patente": patente , "tipo": "moto"}
+        print("Se ha agregado")
+    else:
+        print("Error, opcion invalida")
 
-clave.append({"clave": n, "usuario": user, "tipo": tipo})
+else:
+    num=list(Vehiculos.keys())[-1]
+    if tipo==1:
+        Vehiculos[num+1]={"marca" : marca , "año": año , "patente": patente , "tipo": "sedan"}
+        print("Se ha agregado")
+    elif tipo==2:
+        Vehiculos[num+1]={"marca" : marca , "año": año , "patente": patente , "tipo": "camioneta"}
+        print("Se ha agregado")
+    elif tipo==3:
+        Vehiculos[num+1]={"marca" : marca , "año": año , "patente": patente , "tipo": "moto"}
+        print("Se ha agregado")
+    else:
+        print("Error, opcion invalida")
 
 
 

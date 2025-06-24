@@ -161,3 +161,27 @@ y da solo 3 oportunidades para acertar
 el diccionario debe de estar previamente 
 escrito antes de iniciar el sistema
 '''
+Logins={
+    1:{"usuario": "ignacio", "contraseña": 1234},
+    2:{"usuario": "Felipe", "contraseña": 4321},
+    3:{"usuario": "Pedro", "contraseña": 5678}
+}
+intentos=0
+while True:
+    usuario=input("ingrese su usuario")
+    contraseña=int(input("Ingrese su contraseña"))
+    if Logins[1]["usuario"]==usuario and Logins[1]["contraseña"]==contraseña:
+        print("Bienvenido al sistema")
+        break
+    elif Logins[2]["usuario"]==usuario and Logins[2]["contraseña"]==contraseña:
+        print("Bienvenido al sistema")
+        break
+    elif Logins[3]["usuario"]==usuario and Logins[3]["contraseña"]==contraseña:
+        print("Bienvenido al sistema")
+        break
+    else:
+        print("Datos ingresados invalido")
+        intentos+=1
+    if intentos==3:
+        print("Se ha bloqueado el sistema")
+        break
