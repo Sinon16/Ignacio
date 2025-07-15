@@ -60,7 +60,7 @@ def actualizar_precio(model):
     for i in model:
         print(f"Modelo: {i} - Precio: {model[i][0]}")
     while True:
-        modelo=input("Ingrese modelo a actualizar: ").upper()
+        modelo=input("Ingrese modelo a actualizar: ")
         if modelo in model:
             nuevo=input("Ingrese precio nuevo:")
             model[modelo][0]=nuevo
