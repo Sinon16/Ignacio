@@ -146,7 +146,9 @@ todos los vehiculos motorizados
 5- mostrar estadisticas: ultimo vehiculo ingresado y total en garage
 6- salir
  '''
-Vehiculos={}
+Vehiculos={
+    
+}
 def validar_patente(clave):
     minu=0
     nume=0
